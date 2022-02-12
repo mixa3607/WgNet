@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<OutputType>Library</OutputType>
+		<TargetFramework>net6.0</TargetFramework>
+		<AssemblyName>ArkProjects.Wireguard.Deploy</AssemblyName>
+		<RootNamespace>ArkProjects.Wireguard.Deploy</RootNamespace>
+		<Configurations>Debug;Release;LinuxRelease;WinRelease</Configurations>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<None Remove="Wireguard.Deploy.csproj.DotSettings" />
+	</ItemGroup>
+
+	<PropertyGroup>
+		<SshNetDllPath>..\Submodules\SSH.NET\src\Renci.SshNet\bin\Release\netstandard2.0\Renci.SshNet.dll</SshNetDllPath>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.0" />
+		<PackageReference Include="SshNet.Security.Cryptography" Version="1.3.0" />
+		<PackageReference Condition="!Exists($(SshNetDllPath))" Include="SSH.NET" Version="2020.0.1" />
+		<ProjectReference Include="..\Wireguard.Mesh\Wireguard.Mesh.csproj" />
+		<Reference Condition="Exists($(SshNetDllPath))" Include="Renci.SshNet">
+			<HintPath>$(SshNetDllPath)</HintPath>
+		</Reference>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Update="files/**/*">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,7 @@
+<Project>
+	<PropertyGroup>
+		<NewtonsoftJson_Ver>13.0.1</NewtonsoftJson_Ver>
+		<ArkProjectsLoggingSerilog_Ver>1.0.1</ArkProjectsLoggingSerilog_Ver>
+		<MsLogging_Ver>6.0.0</MsLogging_Ver>
+	</PropertyGroup>
+</Project>

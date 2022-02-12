@@ -1,0 +1,30 @@
+{
+  "profiles": {
+    "ArkProjects.Wireguard.Cli": {
+      "commandName": "Project"
+    },
+    "BuildMesh": {
+      "commandName": "Project",
+      "commandLineArgs": "BuildMesh",
+      "workingDirectory": "./files/mesh"
+    },
+    "ValidateMesh": {
+      "commandName": "Project",
+      "commandLineArgs": "ValidateMesh",
+      "workingDirectory": "./files/mesh"
+    },
+    "GenerateKeys": {
+      "commandName": "Project",
+      "commandLineArgs": "GenerateKeys -o out.json",
+      "workingDirectory": "./files/mesh"
+    },
+    "Deploy": {
+      "commandName": "Project",
+      "commandLineArgs": "DeployConfig"
+    },
+    "Export": {
+      "commandName": "Project",
+      "commandLineArgs": "ExportConfig -t ini -d Z:\\WG"
+    }
+  }
+}
