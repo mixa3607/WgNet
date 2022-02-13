@@ -21,10 +21,17 @@ jobs:
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: |
           ${{ runner.os }}-nuget
+    - uses: actions/cache@v2
+      with:
+        path: ./Submodules/SSH.NET/src/Renci.SshNet/bin/Release/netstandard2.0/Renci.SshNet.dll
+        key: ssh.net
+        restore-keys: |
+          ssh.net
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
       run: |
+        ./build-ssh.net.sh
         dotnet build --no-restore
     - name: Test
       run: dotnet test --no-build --logger trx --results-directory "TestResults"
@@ -52,6 +59,12 @@ jobs:
         key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
         restore-keys: |
           ${{ runner.os }}-nuget
+    - uses: actions/cache@v2
+      with:
+        path: ./Submodules/SSH.NET/src/Renci.SshNet/bin/Release/netstandard2.0/Renci.SshNet.dll
+        key: ssh.net
+        restore-keys: |
+          ssh.net
     - name: Publish
       env:
         BUILD_TARGET: ${{matrix.build_target}}
