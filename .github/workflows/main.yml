@@ -20,15 +20,11 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget
+        key: ${{ runner.os }}-nuget
     - uses: actions/cache@v2
       with:
         path: ./Submodules/SSH.NET/src/Renci.SshNet/bin/Release/netstandard2.0
         key: ssh.net
-        restore-keys: |
-          ssh.net
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -58,15 +54,11 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget-${{ hashFiles('**/packages.lock.json') }}
-        restore-keys: |
-          ${{ runner.os }}-nuget
+        key: ${{ runner.os }}-nuget
     - uses: actions/cache@v2
       with:
-        path: ./Submodules/SSH.NET/src/Renci.SshNet/bin/Release/netstandard2.0/Renci.SshNet.dll
+        path: ./Submodules/SSH.NET/src/Renci.SshNet/bin/Release/netstandard2.0
         key: ssh.net
-        restore-keys: |
-          ssh.net
     - name: Publish
       env:
         BUILD_TARGET: ${{matrix.build_target}}
