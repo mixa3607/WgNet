@@ -62,5 +62,5 @@ jobs:
       env:
         BUILD_TARGET: ${{matrix.build_target}}
       with:
-        name: ${{BUILD_TARGET}}-prebuild
+        name: ${{matrix.build_target}}-prebuild
         path: ./out
