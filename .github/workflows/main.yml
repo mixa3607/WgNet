@@ -1,10 +1,6 @@
-name: publish
+name: main
 
 on:
-  workflow_run:
-    workflows: [ build ]
-    types:
-      - completed
   push:
     branches: [ master ]
   create:
@@ -12,6 +8,41 @@ on:
       - v*
 
 jobs:
+  on:
+    pull_request:
+      branches: [ master ]
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+      with:
+        submodules: recursive
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 6.0.x
+    - uses: actions/cache@v2
+      with:
+        path: ~/.nuget/packages
+        key: ${{runner.os}}-nuget
+    - uses: actions/cache@v2
+      with:
+        path: ./Submodules/SSH.NET/src/Renci.SshNet/bin/Release/netstandard2.0
+        key: ssh.net-${{github.sha}}
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: |
+        ./build-ssh.net.sh
+        dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --logger trx --results-directory "TestResults"
+    - name: Upload dotnet test results
+      uses: actions/upload-artifact@v2
+      with:
+        name: dotnet-results
+        path: TestResults
+      if: ${{always()}}
   publish:
     needs: [build]
     runs-on: ubuntu-latest
