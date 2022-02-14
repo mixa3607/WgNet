@@ -79,7 +79,7 @@ public class VersionHook : ArgHook
         var assembly = TypeInTargetAssembly?.Assembly ?? Assembly.GetEntryAssembly();
         var attrs = assembly?.GetCustomAttributes<AssemblyMetadataAttribute>().ToArray();
 
-        var template = "{{ExeName Cyan !}} {{if HasGitTag}}tag {{GitTag Green!}}!{{if}}{{if HasGitRef}}snapshot!{{if}}, build {{GitRef!}}:{{GitCommitSha!}}\r\n" +
+        var template = "{{ExeName Cyan !}} {{if HasGitTag}}{{GitTag Green!}}!{{if}}{{if HasGitRef}}snapshot!{{if}}, build {{GitRef!}}:{{GitCommitSha!}}\r\n" +
                        "Build: {{BuildDate DarkGreen!}}\r\n" +
                        "Project: {{ProjectUrl Green!}}\r\n" +
                        "Repo: {{RepoUrl Green!}}\r\n";
@@ -92,7 +92,7 @@ public class VersionHook : ArgHook
 
         var data = new
         {
-            ExeName = Path.GetFileName(assembly.Location),
+            ExeName = Path.GetFileName(Environment.ProcessPath),
             RepoUrl = attrs?.FirstOrDefault(x => x.Key == CustomAttributesName.RepoUrl)?.Value,
             ProjectUrl = attrs?.FirstOrDefault(x => x.Key == CustomAttributesName.ProjectUrl)?.Value,
             GitRef = gitRef,

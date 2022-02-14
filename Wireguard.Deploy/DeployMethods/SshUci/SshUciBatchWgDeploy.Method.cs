@@ -16,7 +16,7 @@ namespace ArkProjects.Wireguard.Deploy.DeployMethods
             private readonly WgDeployTargetConfig _target;
             private readonly Options _options;
 
-            private bool _initialized = false;
+            private bool _initialized;
             private SshClient _client;
             private WgHostConfig _wgConfig;
 

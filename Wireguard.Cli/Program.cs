@@ -29,7 +29,7 @@ namespace ArkProjects.Wireguard.Cli
         {
             var builder = new HostBuilder()
                 .UseContentRoot("./")
-                .UseSerilog((x, logger) =>
+                .UseSerilog((_, logger) =>
                 {
                     logger.MinimumLevel.Is(LogEventLevel.Verbose)
                         .WriteTo.Console(options.ConsoleLogLevel)

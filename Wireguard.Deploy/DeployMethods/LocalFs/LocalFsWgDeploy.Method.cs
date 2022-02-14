@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using ArkProjects.Wireguard.Deploy.Exceptions;
 using ArkProjects.Wireguard.Mesh.CConverters;
 using ArkProjects.Wireguard.Mesh.Configs;
 using Microsoft.Extensions.Logging;
@@ -16,7 +17,7 @@ namespace ArkProjects.Wireguard.Deploy.DeployMethods
             private readonly WgDeployTargetConfig _target;
             private readonly Options _options;
 
-            private bool _initialized = false;
+            private bool _initialized;
             private WgHostConfig _wgConfig;
 
             public Method(WgDeployTargetConfig target, ILogger<Method> logger,
@@ -39,6 +40,7 @@ namespace ArkProjects.Wireguard.Deploy.DeployMethods
             // TODO: rewrite
             public int Check(bool allowNonZeroCode)
             {
+                ThrowIfNotInitialized();
                 if (string.IsNullOrWhiteSpace(_options.Dir))
                 {
                     _logger.LogError("{prop} property is empty", nameof(_options.Dir));
@@ -56,6 +58,7 @@ namespace ArkProjects.Wireguard.Deploy.DeployMethods
 
             public int RemoveConfig(bool allowNonZeroCode)
             {
+                ThrowIfNotInitialized();
                 var converter = GetConverter();
                 var file = _options.File;
                 if (string.IsNullOrWhiteSpace(file))
@@ -84,6 +87,7 @@ namespace ArkProjects.Wireguard.Deploy.DeployMethods
 
             public int UploadConfig(bool allowNonZeroCode)
             {
+                ThrowIfNotInitialized();
                 try
                 {
                     if (_options.CreateDirs && !Directory.Exists(_options.Dir))
@@ -125,6 +129,12 @@ namespace ArkProjects.Wireguard.Deploy.DeployMethods
 
             public void Dispose()
             {
+            }
+
+            private void ThrowIfNotInitialized()
+            {
+                if (!_initialized)
+                    throw new DeployMethodNotInitialized();
             }
 
             private IWgConfigConverter GetConverter()

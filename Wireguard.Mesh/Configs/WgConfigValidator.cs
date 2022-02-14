@@ -24,7 +24,7 @@ namespace ArkProjects.Wireguard.Mesh.Configs
                 .Where(x => x?.MutatedConfigs != null)
                 .SelectMany(x => x.MutatedConfigs.Select(y => y.Name))
                 .Where(x => !string.IsNullOrWhiteSpace(x))
-                .Concat(nodeNames) ?? nodeNames;
+                .Concat(nodeNames).ToArray() ?? nodeNames;
 
             //pre-shared
             if (mesh.NodesPreSharedKeys == null || mesh.NodesPreSharedKeys.Count == 0)

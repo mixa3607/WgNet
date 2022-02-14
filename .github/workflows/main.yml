@@ -71,7 +71,7 @@ jobs:
         if [ ! -f './Submodules/SSH.NET/src/Renci.SshNet/bin/Release/netstandard2.0/Renci.SshNet.dll' ]; then
           ./build-ssh.net.sh
         fi
-        dotnet publish -c SingleFileRelease -r $TARGET_OS Wireguard.Cli -o ./out
+        dotnet publish -c SingleFileRelease --self-contained -r $TARGET_OS Wireguard.Cli -o ./out
     - name: Dist
       uses: actions/upload-artifact@v2
       with:
