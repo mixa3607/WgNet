@@ -24,7 +24,7 @@ namespace ArkProjects.Wireguard.Cli
         private IReadOnlyList<IWgHostConfigValidator> _hostValidators;
         private IReadOnlyList<IWgMeshConfigValidator> _meshValidators;
 
-        [HelpHook, ArgShortcut("-?"), ArgDescription("Shows this help")]
+        [HelpHook, ArgShortcut("-?"), ArgShortcut("-h"), ArgShortcut("--help"), ArgDescription("Shows this help")]
         public bool Help { get; set; }
 
         [VersionHook(TypeInTargetAssembly = typeof(WgCli)), ArgShortcut("-v"), ArgShortcut("--version"), ArgDescription("Show version info")]
