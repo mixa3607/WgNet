@@ -1,14 +1,18 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
-
 	<PropertyGroup>
 		<OutputType>Exe</OutputType>
 		<TargetFramework>net6.0</TargetFramework>
 		<AssemblyName>wg-net</AssemblyName>
 		<RootNamespace>ArkProjects.Wireguard.Cli</RootNamespace>
-		<Configurations>Debug;Release;LinuxRelease;WinRelease</Configurations>
+		<Configurations>Debug;Release;SingleFileRelease</Configurations>
+		<PackageId>ArkProjects.Wireguard.Cli</PackageId>
+		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<NeutralLanguage>en</NeutralLanguage>
+		<AssemblyVersion>$(VERSION)</AssemblyVersion>
+		<FileVersion>$(VERSION)</FileVersion>
 	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)' == 'LinuxRelease'">
+	<PropertyGroup Condition="'$(Configuration)' == 'SingleFileRelease'">
 		<PublishSingleFile>true</PublishSingleFile>
 		<SelfContained>true</SelfContained>
 		<PublishTrimmed>false</PublishTrimmed>
@@ -16,30 +20,12 @@
 		<IncludeAllContentForSelfExtract>false</IncludeAllContentForSelfExtract>
 		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
 		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-
-		<RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-		<PlatformTarget>x64</PlatformTarget>
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
-		<OutputPath>bin/Release/Linux</OutputPath>
 		<DefineConstants>TRACE</DefineConstants>
-	</PropertyGroup>
 
-	<PropertyGroup Condition="'$(Configuration)' == 'WinRelease'">
-		<PublishSingleFile>true</PublishSingleFile>
-		<SelfContained>true</SelfContained>
-		<PublishTrimmed>false</PublishTrimmed>
-		<PublishReadyToRun>true</PublishReadyToRun>
-		<IncludeAllContentForSelfExtract>false</IncludeAllContentForSelfExtract>
-		<EnableCompressionInSingleFile>true</EnableCompressionInSingleFile>
-		<IncludeNativeLibrariesForSelfExtract>true</IncludeNativeLibrariesForSelfExtract>
-
-		<RuntimeIdentifier>win-x64</RuntimeIdentifier>
-		<PlatformTarget>x64</PlatformTarget>
-		<DebugType>pdbonly</DebugType>
-		<Optimize>true</Optimize>
-		<OutputPath>bin/Release/Win</OutputPath>
-		<DefineConstants>TRACE</DefineConstants>
+		<!--<RuntimeIdentifier>linux-x64</RuntimeIdentifier>
+		<PlatformTarget>x64</PlatformTarget>-->
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -67,7 +53,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Properties\PublishProfiles\" />
+		<None Include="README.md">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Folder Include="Attributes\" />
 	</ItemGroup>
 
 </Project>

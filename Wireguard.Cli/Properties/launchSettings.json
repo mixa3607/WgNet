@@ -1,7 +1,8 @@
 {
   "profiles": {
-    "ArkProjects.Wireguard.Cli": {
-      "commandName": "Project"
+    "Version": {
+      "commandName": "Project",
+      "commandLineArgs": "-v"
     },
     "BuildMesh": {
       "commandName": "Project",

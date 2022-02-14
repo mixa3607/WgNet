@@ -4,4 +4,46 @@
 		<ArkProjectsLoggingSerilog_Ver>1.0.1</ArkProjectsLoggingSerilog_Ver>
 		<MsLogging_Ver>6.0.0</MsLogging_Ver>
 	</PropertyGroup>
+
+	<PropertyGroup>
+		<GIT_REF Condition="'$(GIT_REF)' == ''">local</GIT_REF>
+		<GIT_REF_TYPE Condition="'$(GIT_REF_TYPE)' == ''">branch</GIT_REF_TYPE>
+		<GIT_COMMIT_SHA Condition="'$(GIT_COMMIT_SHA)' == ''">deadbeef</GIT_COMMIT_SHA>
+		<VERSION Condition="'$(VERSION)' == ''">0.0.0</VERSION>
+		<PROJECT_URL Condition="'$(PROJECT_URL)' == ''">https://github.com/mixa3607/WgNet</PROJECT_URL>
+		<REPO_URL Condition="'$(REPO_URL)' == ''">git@github.com:mixa3607/WgNet.git</REPO_URL>
+		<BUILD_DATE>$([System.DateTime]::Now.ToString())</BUILD_DATE>
+
+		<RepositoryType>git</RepositoryType>
+		<RepositoryUrl>$(REPO_URL)</RepositoryUrl>
+		<PackageProjectUrl>$(PROJECT_URL)</PackageProjectUrl>
+		<Authors>mixa3607</Authors>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(GIT_REF)' != ''">
+			<_Parameter1>GIT_REF</_Parameter1>
+			<_Parameter2>$(GIT_REF)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(GIT_REF_TYPE)' != ''">
+			<_Parameter1>GIT_REF_TYPE</_Parameter1>
+			<_Parameter2>$(GIT_REF_TYPE)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(GIT_COMMIT_SHA)' != ''">
+			<_Parameter1>GIT_COMMIT_SHA</_Parameter1>
+			<_Parameter2>$(GIT_COMMIT_SHA)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(BUILD_DATE)' != ''">
+			<_Parameter1>BUILD_DATE</_Parameter1>
+			<_Parameter2>$(BUILD_DATE)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(PROJECT_URL)' != ''">
+			<_Parameter1>PROJECT_URL</_Parameter1>
+			<_Parameter2>$(PROJECT_URL)</_Parameter2>
+		</AssemblyAttribute>
+		<AssemblyAttribute Include="System.Reflection.AssemblyMetadataAttribute" Condition="'$(REPO_URL)' != ''">
+			<_Parameter1>REPO_URL</_Parameter1>
+			<_Parameter2>$(REPO_URL)</_Parameter2>
+		</AssemblyAttribute>
+	</ItemGroup>
 </Project>

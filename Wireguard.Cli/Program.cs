@@ -1,5 +1,4 @@
-﻿using ArkProjects.Wireguard.Cli.Cli;
-using ArkProjects.Wireguard.Deploy;
+﻿using ArkProjects.Wireguard.Deploy;
 using ArkProjects.Wireguard.Deploy.DeployMethods;
 using ArkProjects.Wireguard.Mesh;
 using ArkProjects.Wireguard.Mesh.CConverters;

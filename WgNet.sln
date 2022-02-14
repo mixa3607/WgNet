@@ -11,58 +11,36 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wireguard.Deploy", "Wiregua
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wireguard.Cli", "Wireguard.Cli\Wireguard.Cli.csproj", "{E2F148E7-525D-4E0F-8341-3C75123BCAE7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wireguard.Tools.Tests", "Wireguard.Tools.Tests\Wireguard.Tools.Tests.csproj", "{B5CFD8F6-E646-423A-A28C-7B8FA9AD6C5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wireguard.Tools.Tests", "Wireguard.Tools.Tests\Wireguard.Tools.Tests.csproj", "{B5CFD8F6-E646-423A-A28C-7B8FA9AD6C5D}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{8CE03719-4B69-4E85-A11A-EC0FA3A80007}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
-		LinuxRelease|Any CPU = LinuxRelease|Any CPU
 		Release|Any CPU = Release|Any CPU
-		WinRelease|Any CPU = WinRelease|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{EBB34592-0AD4-4E42-A0A3-3BC8DCEAF85C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{EBB34592-0AD4-4E42-A0A3-3BC8DCEAF85C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBB34592-0AD4-4E42-A0A3-3BC8DCEAF85C}.LinuxRelease|Any CPU.ActiveCfg = LinuxRelease|Any CPU
-		{EBB34592-0AD4-4E42-A0A3-3BC8DCEAF85C}.LinuxRelease|Any CPU.Build.0 = LinuxRelease|Any CPU
 		{EBB34592-0AD4-4E42-A0A3-3BC8DCEAF85C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBB34592-0AD4-4E42-A0A3-3BC8DCEAF85C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBB34592-0AD4-4E42-A0A3-3BC8DCEAF85C}.WinRelease|Any CPU.ActiveCfg = WinRelease|Any CPU
-		{EBB34592-0AD4-4E42-A0A3-3BC8DCEAF85C}.WinRelease|Any CPU.Build.0 = WinRelease|Any CPU
 		{F79DC59D-F344-4615-8D96-08418BBA0304}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{F79DC59D-F344-4615-8D96-08418BBA0304}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F79DC59D-F344-4615-8D96-08418BBA0304}.LinuxRelease|Any CPU.ActiveCfg = LinuxRelease|Any CPU
-		{F79DC59D-F344-4615-8D96-08418BBA0304}.LinuxRelease|Any CPU.Build.0 = LinuxRelease|Any CPU
 		{F79DC59D-F344-4615-8D96-08418BBA0304}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F79DC59D-F344-4615-8D96-08418BBA0304}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F79DC59D-F344-4615-8D96-08418BBA0304}.WinRelease|Any CPU.ActiveCfg = WinRelease|Any CPU
-		{F79DC59D-F344-4615-8D96-08418BBA0304}.WinRelease|Any CPU.Build.0 = WinRelease|Any CPU
 		{CA672A45-5DD5-4F17-8794-CA6C69D05E20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CA672A45-5DD5-4F17-8794-CA6C69D05E20}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CA672A45-5DD5-4F17-8794-CA6C69D05E20}.LinuxRelease|Any CPU.ActiveCfg = LinuxRelease|Any CPU
-		{CA672A45-5DD5-4F17-8794-CA6C69D05E20}.LinuxRelease|Any CPU.Build.0 = LinuxRelease|Any CPU
 		{CA672A45-5DD5-4F17-8794-CA6C69D05E20}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CA672A45-5DD5-4F17-8794-CA6C69D05E20}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CA672A45-5DD5-4F17-8794-CA6C69D05E20}.WinRelease|Any CPU.ActiveCfg = WinRelease|Any CPU
-		{CA672A45-5DD5-4F17-8794-CA6C69D05E20}.WinRelease|Any CPU.Build.0 = WinRelease|Any CPU
 		{E2F148E7-525D-4E0F-8341-3C75123BCAE7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E2F148E7-525D-4E0F-8341-3C75123BCAE7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E2F148E7-525D-4E0F-8341-3C75123BCAE7}.LinuxRelease|Any CPU.ActiveCfg = LinuxRelease|Any CPU
-		{E2F148E7-525D-4E0F-8341-3C75123BCAE7}.LinuxRelease|Any CPU.Build.0 = LinuxRelease|Any CPU
 		{E2F148E7-525D-4E0F-8341-3C75123BCAE7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2F148E7-525D-4E0F-8341-3C75123BCAE7}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E2F148E7-525D-4E0F-8341-3C75123BCAE7}.WinRelease|Any CPU.ActiveCfg = WinRelease|Any CPU
-		{E2F148E7-525D-4E0F-8341-3C75123BCAE7}.WinRelease|Any CPU.Build.0 = WinRelease|Any CPU
 		{B5CFD8F6-E646-423A-A28C-7B8FA9AD6C5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B5CFD8F6-E646-423A-A28C-7B8FA9AD6C5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B5CFD8F6-E646-423A-A28C-7B8FA9AD6C5D}.LinuxRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{B5CFD8F6-E646-423A-A28C-7B8FA9AD6C5D}.LinuxRelease|Any CPU.Build.0 = Release|Any CPU
 		{B5CFD8F6-E646-423A-A28C-7B8FA9AD6C5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B5CFD8F6-E646-423A-A28C-7B8FA9AD6C5D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B5CFD8F6-E646-423A-A28C-7B8FA9AD6C5D}.WinRelease|Any CPU.ActiveCfg = Release|Any CPU
-		{B5CFD8F6-E646-423A-A28C-7B8FA9AD6C5D}.WinRelease|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

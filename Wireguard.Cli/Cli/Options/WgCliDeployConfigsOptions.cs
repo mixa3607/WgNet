@@ -1,7 +1,7 @@
 ﻿using ArkProjects.Wireguard.Deploy;
 using PowerArgs;
 
-namespace ArkProjects.Wireguard.Cli.Cli.Options
+namespace ArkProjects.Wireguard.Cli.Options
 {
     public class WgCliDeployConfigsOptions
     {

@@ -1,7 +1,7 @@
 ﻿using PowerArgs;
 using Serilog.Events;
 
-namespace ArkProjects.Wireguard.Cli.Cli;
+namespace ArkProjects.Wireguard.Cli;
 
 public class WgCliLogOptions
 {

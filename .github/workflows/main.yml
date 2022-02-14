@@ -20,11 +20,11 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget
+        key: ${{runner.os}}-nuget
     - uses: actions/cache@v2
       with:
         path: ./Submodules/SSH.NET/src/Renci.SshNet/bin/Release/netstandard2.0
-        key: ssh.net
+        key: ssh.net-${{github.sha}}
     - name: Restore dependencies
       run: dotnet restore
     - name: Build
@@ -38,13 +38,13 @@ jobs:
       with:
         name: dotnet-results
         path: TestResults
-      if: ${{ always() }}
+      if: ${{always()}}
   publish:
     needs: [build]
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        build_target: [ "LinuxRelease", "WinRelease" ]
+        target_os: [ "linux-x64", "win-x64" ]
     steps:
     - uses: actions/checkout@v2
     - name: Setup .NET
@@ -54,20 +54,26 @@ jobs:
     - uses: actions/cache@v2
       with:
         path: ~/.nuget/packages
-        key: ${{ runner.os }}-nuget
+        key: ${{runner.os}}-nuget
     - uses: actions/cache@v2
       with:
         path: ./Submodules/SSH.NET/src/Renci.SshNet/bin/Release/netstandard2.0
-        key: ssh.net
+        key: ssh.net-${{github.sha}}
     - name: Publish
       env:
-        BUILD_TARGET: ${{matrix.build_target}}
+        TARGET_OS: ${{matrix.target_os}}
+        GIT_REF: ${{github.ref_name}}
+        GIT_REF_TYPE: ${{github.ref_type}}
+        GIT_COMMIT_SHA: ${{github.sha}}
+        PROJECT_URL: https://github.com/${{github.repository}}
+        REPO_URL: ${{github.repositoryUrl}}
       run: |
-        dotnet publish -c $BUILD_TARGET Wireguard.Cli -o ./out
+        if [ ! -f './Submodules/SSH.NET/src/Renci.SshNet/bin/Release/netstandard2.0/Renci.SshNet.dll' ]; then
+          ./build-ssh.net.sh
+        fi
+        dotnet publish -c SingleFileRelease -r $TARGET_OS Wireguard.Cli -o ./out
     - name: Dist
       uses: actions/upload-artifact@v2
-      env:
-        BUILD_TARGET: ${{matrix.build_target}}
       with:
-        name: ${{matrix.build_target}}-prebuild
+        name: ${{matrix.target_os}}_prebuild
         path: ./out

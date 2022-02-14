@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using ArkProjects.Wireguard.Cli.Cli.Options;
+using ArkProjects.Wireguard.Cli.Options;
 using ArkProjects.Wireguard.Deploy;
 using ArkProjects.Wireguard.Mesh;
 using ArkProjects.Wireguard.Mesh.CConverters;
@@ -13,7 +13,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using PowerArgs;
 
-namespace ArkProjects.Wireguard.Cli.Cli
+namespace ArkProjects.Wireguard.Cli
 {
     [ArgExceptionBehavior(ArgExceptionPolicy.StandardExceptionHandling)]
     public class WgCli : WgCliLogOptions
@@ -26,6 +26,9 @@ namespace ArkProjects.Wireguard.Cli.Cli
 
         [HelpHook, ArgShortcut("-?"), ArgDescription("Shows this help")]
         public bool Help { get; set; }
+
+        [VersionHook(TypeInTargetAssembly = typeof(WgCli)), ArgShortcut("-v"), ArgShortcut("--version"), ArgDescription("Show version info")]
+        public bool Version { get; set; }
 
         public WgCli(IServiceProvider serviceProvider, ILogger<WgCli> logger)
         {
