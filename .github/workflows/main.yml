@@ -3,14 +3,13 @@ name: main
 on:
   push:
     branches: [ master ]
+  pull_request:
+    branches: [ master ]
   create:
     tags:
       - v*
 
 jobs:
-  on:
-    pull_request:
-      branches: [ master ]
   build:
     runs-on: ubuntu-latest
     steps:
@@ -51,6 +50,8 @@ jobs:
         target_os: [ "linux-x64", "win-x64" ]
     steps:
     - uses: actions/checkout@v2
+      with:
+        submodules: recursive
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
