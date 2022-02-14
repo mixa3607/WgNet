@@ -78,15 +78,18 @@ public class VersionHook : ArgHook
             return;
         var assembly = TypeInTargetAssembly?.Assembly ?? Assembly.GetEntryAssembly();
         var attrs = assembly?.GetCustomAttributes<AssemblyMetadataAttribute>().ToArray();
+        var versionAttr = assembly?.GetCustomAttribute<AssemblyFileVersionAttribute>();
 
-        var template = "{{ExeName Cyan !}} {{if HasGitTag}}{{GitTag Green!}}!{{if}}{{if HasGitRef}}snapshot!{{if}}, build {{GitRef!}}:{{GitCommitSha!}}\r\n" +
+        var template = "{{ExeName Cyan !}} version {{Version Green!}}, commit {{GitCommitSha!}}\r\n" +
+                       "{{if HasGitTag}}Tag: {{GitTag Green!}}\r\n!{{if}}" +
+                       "{{if HasGitRef}}Branch: {{GitRef Red!}}\r\n!{{if}}" +
                        "Build: {{BuildDate DarkGreen!}}\r\n" +
                        "Project: {{ProjectUrl Green!}}\r\n" +
                        "Repo: {{RepoUrl Green!}}\r\n";
 
         var refType = attrs?.FirstOrDefault(x => x.Key == CustomAttributesName.GitRefType)?.Value ?? "branch";
         var refName = attrs?.FirstOrDefault(x => x.Key == CustomAttributesName.GitRef)?.Value ?? "";
-
+        
         var gitRef = refType == "branch" ? refName : null;
         var gitTag = refType == "tag" ? refName : null;
 
@@ -101,6 +104,7 @@ public class VersionHook : ArgHook
             BuildDate = attrs?.FirstOrDefault(x => x.Key == CustomAttributesName.BuildDate)?.Value,
             HasGitTag = gitTag != null,
             HasGitRef = gitRef != null,
+            Version = versionAttr?.Version
         };
         new DocumentRenderer().Render(template, data).Write();
     }

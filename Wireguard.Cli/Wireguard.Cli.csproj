@@ -6,7 +6,7 @@
 		<RootNamespace>ArkProjects.Wireguard.Cli</RootNamespace>
 		<Configurations>Debug;Release;SingleFileRelease</Configurations>
 		<PackageId>ArkProjects.Wireguard.Cli</PackageId>
-		<PackageReadmeFile>README.md</PackageReadmeFile>
+		<PackageReadmeFile>../README.md</PackageReadmeFile>
 		<NeutralLanguage>en</NeutralLanguage>
 		<AssemblyVersion>$(VERSION)</AssemblyVersion>
 		<FileVersion>$(VERSION)</FileVersion>
@@ -23,9 +23,6 @@
 		<DebugType>pdbonly</DebugType>
 		<Optimize>true</Optimize>
 		<DefineConstants>TRACE</DefineConstants>
-
-		<!--<RuntimeIdentifier>linux-x64</RuntimeIdentifier>
-		<PlatformTarget>x64</PlatformTarget>-->
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -50,17 +47,6 @@
 		<None Update="mesh_configs_sample/**/*">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Include="README.md">
-			<Pack>True</Pack>
-			<PackagePath>\</PackagePath>
-		</None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Attributes\" />
 	</ItemGroup>
 
 </Project>

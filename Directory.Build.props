@@ -9,7 +9,10 @@
 		<GIT_REF Condition="'$(GIT_REF)' == ''">local</GIT_REF>
 		<GIT_REF_TYPE Condition="'$(GIT_REF_TYPE)' == ''">branch</GIT_REF_TYPE>
 		<GIT_COMMIT_SHA Condition="'$(GIT_COMMIT_SHA)' == ''">deadbeef</GIT_COMMIT_SHA>
+
+		<VERSION Condition="'$(VERSION)' == '' and '$(GIT_REF_TYPE)' == 'tag'">$([System.Text.RegularExpressions.Regex]::Match($(GIT_REF), 'v(?&lt;ver&gt;(\d+\.)*\d)').Groups['ver'].Value)</VERSION>
 		<VERSION Condition="'$(VERSION)' == ''">0.0.0</VERSION>
+
 		<PROJECT_URL Condition="'$(PROJECT_URL)' == ''">https://github.com/mixa3607/WgNet</PROJECT_URL>
 		<REPO_URL Condition="'$(REPO_URL)' == ''">git@github.com:mixa3607/WgNet.git</REPO_URL>
 		<BUILD_DATE>$([System.DateTime]::Now.ToString())</BUILD_DATE>
