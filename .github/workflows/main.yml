@@ -3,10 +3,14 @@ name: main
 on:
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
+  create:
+    tags:
+      - v*
 
 jobs:
+  on:
+    pull_request:
+      branches: [ master ]
   build:
     runs-on: ubuntu-latest
     steps:
