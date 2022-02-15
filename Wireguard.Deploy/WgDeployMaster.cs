@@ -24,6 +24,11 @@ namespace ArkProjects.Wireguard.Deploy
 
         public void Deploy(WgDeployTargetConfig target, WgDeployStageType stages)
         {
+            if (target.Disable)
+            {
+                _logger.LogInformation("Config {name} disabled. Skip!", target.Name);
+                return;
+            }
             try
             {
                 _logger.LogInformation("Deploying {name} over {method}", target.ConfigFile, target.DeployMethod);

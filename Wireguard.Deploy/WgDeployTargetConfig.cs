@@ -8,6 +8,7 @@ namespace ArkProjects.Wireguard.Deploy
         public string DeployMethod { get; set; }
         public JObject DeployMethodOptions { get; set; }
         public string ConfigFile { get; set; }
+        public bool Disable { get; set; }
 
         public bool AllowCheckFail { get; set; } = false;
         public bool AllowDownFail { get; set; } = true;
