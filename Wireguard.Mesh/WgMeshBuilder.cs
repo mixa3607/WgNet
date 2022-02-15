@@ -67,7 +67,7 @@ namespace ArkProjects.Wireguard.Mesh
                 foreach (var configOverride in mutatedConfig.Overrides)
                 {
                     var peerNodeConfig = allNodes.First(x => x.Name == configOverride.Node);
-                    var preSharedKey = preSharedKeyPairs.FirstOrDefault(x => x.Nodes.Contains(thisNode.Name) && x.Nodes.Contains(peerNodeConfig.Name))?.PreSharedKey;
+                    var preSharedKey = preSharedKeyPairs?.FirstOrDefault(x => x.Nodes.Contains(thisNode.Name) && x.Nodes.Contains(peerNodeConfig.Name))?.PreSharedKey;
                     var peer = new WgHostPeerConfig(peerNodeConfig, configOverride.AllowedIps, preSharedKey);
                     if (!configOverride.InheritKeepalive)
                         peer.PersistentKeepalive = null;
@@ -81,7 +81,7 @@ namespace ArkProjects.Wireguard.Mesh
                 if (peerNodeConfig.AddSelfAddresses)
                     allowedIps.AddRange(peerNodeConfig.BindAddresses);
 
-                var preSharedKey = preSharedKeyPairs.FirstOrDefault(x => x.Nodes.Contains(thisNode.Name) && x.Nodes.Contains(peerNodeConfig.Name))?.PreSharedKey;
+                var preSharedKey = preSharedKeyPairs?.FirstOrDefault(x => x.Nodes.Contains(thisNode.Name) && x.Nodes.Contains(peerNodeConfig.Name))?.PreSharedKey;
                 peers.Add(new WgHostPeerConfig(peerNodeConfig, allowedIps, preSharedKey));
             }
 
@@ -108,7 +108,7 @@ namespace ArkProjects.Wireguard.Mesh
                 if (peerNodeConfig.AddSelfAddresses)
                     allowedIps.AddRange(peerNodeConfig.BindAddresses);
 
-                var preSharedKey = preSharedKeyPairs.FirstOrDefault(x => x.Nodes.Contains(thisNode.Name) && x.Nodes.Contains(peerNodeConfig.Name))?.PreSharedKey;
+                var preSharedKey = preSharedKeyPairs?.FirstOrDefault(x => x.Nodes.Contains(thisNode.Name) && x.Nodes.Contains(peerNodeConfig.Name))?.PreSharedKey;
                 peers.Add(new WgHostPeerConfig(peerNodeConfig, allowedIps, preSharedKey));
             }
 

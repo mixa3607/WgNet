@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using ArkProjects.Wireguard.Deploy.Exceptions;
 using ArkProjects.Wireguard.Mesh.CConverters;
@@ -33,9 +34,14 @@ namespace ArkProjects.Wireguard.Deploy.DeployMethods
             {
                 _wgConfig = WgHostConfigManager.LoadFile(_target.ConfigFile);
                 _logger.LogDebug("Create connection to {user}@{host}:{port}", _options.User, _options.Host, _options.Port);
-                var connInfo = new ConnectionInfo(_options.Host, _options.Port, _options.User,
-                    new PrivateKeyAuthenticationMethod(_options.User, new PrivateKeyFile(_options.PrivateKeyFile, _options.PrivateKeyFilePhrase)),
-                    new PasswordAuthenticationMethod(_options.User, _options.Password));
+
+                var authMethods = new List<AuthenticationMethod>();
+                authMethods.Add(new PrivateKeyAuthenticationMethod(_options.User, new PrivateKeyFile(_options.PrivateKeyFile, _options.PrivateKeyFilePhrase)));
+                if (!string.IsNullOrEmpty(_options.Password))
+                    authMethods.Add(new PasswordAuthenticationMethod(_options.User, _options.Password));
+
+                var connInfo = new ConnectionInfo(_options.Host, _options.Port, _options.User, authMethods.ToArray());
+
                 _client = new SshClient(connInfo);
                 _logger.LogInformation("Connecting to {user}@{host}:{port}", _options.User, _options.Host, _options.Port);
                 _client.Connect();
